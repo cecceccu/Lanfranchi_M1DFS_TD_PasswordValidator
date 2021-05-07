@@ -98,11 +98,18 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    void invalidUserPwdWithErrors(){
+    void invalidPwdWithErrors(){
         passwordToTest = "";
         ArrayList<String> expectedErrors = new ArrayList<>(Arrays.asList("Password must be at least 11 characters",
                 "Password must contain at least one letter", "Password must contain at least one digit",
                 "Password must contain at least one special character"));
+        Assertions.assertEquals(expectedErrors, validator.invalidPasswordErrors(passwordToTest, 10));
+    }
+
+    @Test
+    void validPwdWithErrors(){
+        passwordToTest = "aAbfon15*?ml?LM";
+        ArrayList<String> expectedErrors = new ArrayList<String>();
         Assertions.assertEquals(expectedErrors, validator.invalidPasswordErrors(passwordToTest, 10));
     }
 
