@@ -15,4 +15,15 @@ public class PasswordValidator {
     public boolean validatePwd(String passwordToTest) {
         return validateDigit(passwordToTest) && validateLetter(passwordToTest) && validateLength(passwordToTest, 6);
     }
+
+    public boolean validateSpecialChars(String passwordToTest) {
+        return passwordToTest.matches(".*\\W.*");
+    }
+
+
+    public boolean validateAdminPwd(String passwordToTest) {
+        return validateDigit(passwordToTest) && validateLetter(passwordToTest)
+                && validateLength(passwordToTest, 10) && validateSpecialChars(passwordToTest);
+
+    }
 }
