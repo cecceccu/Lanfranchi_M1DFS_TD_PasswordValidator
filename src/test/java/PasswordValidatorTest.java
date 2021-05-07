@@ -1,5 +1,8 @@
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class PasswordValidatorTest {
 
     private PasswordValidator validator;
@@ -67,17 +70,17 @@ public class PasswordValidatorTest {
         Assertions.assertTrue(validator.validatePwd(passwordToTest));
 
     }
-    
+
     @Test
     void noSpecialChars(){
         passwordToTest = "A3g56812ffhjT";
-        Assertions.assertFalse(validator.validateSpecialChars(passwordToTest));
+        Assertions.assertFalse(validator.validateSpecialChar(passwordToTest));
     }
 
     @Test
     void specialChars(){
         passwordToTest = "?hga";
-        Assertions.assertTrue(validator.validateSpecialChars(passwordToTest));
+        Assertions.assertTrue(validator.validateSpecialChar(passwordToTest));
     }
 
     @Test
@@ -92,6 +95,15 @@ public class PasswordValidatorTest {
         passwordToTest = "A3g4DD568*12fhj*";
         Assertions.assertTrue(validator.validateAdminPwd(passwordToTest));
 
+    }
+
+    @Test
+    void invalidUserPwdWithErrors(){
+        passwordToTest = "";
+        ArrayList<String> expectedErrors = new ArrayList<>(Arrays.asList("Password must be at least 11 characters",
+                "Password must contain at least one letter", "Password must contain at least one digit",
+                "Password must contain at least one special character"));
+        Assertions.assertEquals(expectedErrors, validator.invalidPasswordErrors(passwordToTest, 10));
     }
 
 }
