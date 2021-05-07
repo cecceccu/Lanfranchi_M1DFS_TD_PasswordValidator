@@ -2,11 +2,11 @@ import org.junit.jupiter.api.*;
 
 public class PasswordValidatorTest {
 
-    private PasswordValidator validator;
+    private static PasswordValidator validator;
     private String passwordToTest;
 
     @BeforeAll
-    void init(){
+    static void init(){
         validator = new PasswordValidator();
     }
 
@@ -16,22 +16,41 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    void lengthTest(){
+    void invalidLengthTest(){
         passwordToTest = "3Ffp6";
         Assertions.assertFalse(validator.validateLength(passwordToTest));
     }
 
     @Test
-    void digitTest(){
+    void noDigitsTest(){
         passwordToTest = "AgpPolLLzz";
         Assertions.assertFalse(validator.validateDigit(passwordToTest));
     }
 
 
     @Test
-    void letterTest(){
+    void noLettersTest(){
         passwordToTest = "45896451510518";
         Assertions.assertFalse(validator.validateLetter(passwordToTest));
+    }
+
+    @Test
+    void lengthTest(){
+        passwordToTest = "aaaaaaaaaaaa";
+        Assertions.assertTrue(validator.validateLength(passwordToTest));
+    }
+
+    @Test
+    void digitsTest(){
+        passwordToTest = "a1a";
+        Assertions.assertTrue(validator.validateDigit(passwordToTest));
+    }
+
+
+    @Test
+    void lettersTest(){
+        passwordToTest = "1a1";
+        Assertions.assertTrue(validator.validateLetter(passwordToTest));
     }
 
 
