@@ -71,13 +71,13 @@ public class PasswordValidatorTest {
     @Test
     void invalidAdminLength(){
         passwordToTest = "A*3g56812";
-        Assertions.assertFalse(validator.validateAdminLength(passwordToTest, 10));
+        Assertions.assertFalse(validator.validateLength(passwordToTest, 10));
     }
 
     @Test
     void ValidAdminLength(){
         passwordToTest = "A*3g56812GG";
-        Assertions.assertTrue(validator.validateAdminLength(passwordToTest, 10));
+        Assertions.assertTrue(validator.validateLength(passwordToTest, 10));
     }
 
     @Test
