@@ -1,6 +1,6 @@
 public class PasswordValidator {
-    public boolean validateLength(String passwordToTest) {
-        return passwordToTest.length()>6;
+    public boolean validateLength(String passwordToTest, int length) {
+        return passwordToTest.length()>length;
     }
 
 
@@ -13,6 +13,6 @@ public class PasswordValidator {
     }
 
     public boolean validatePwd(String passwordToTest) {
-        return validateDigit(passwordToTest) && validateLetter(passwordToTest) && validateLength(passwordToTest);
+        return validateDigit(passwordToTest) && validateLetter(passwordToTest) && validateLength(passwordToTest, 6);
     }
 }
