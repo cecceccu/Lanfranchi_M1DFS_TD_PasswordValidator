@@ -19,7 +19,7 @@ public class PasswordValidatorTest {
     @Test
     void invalidLengthTest(){
         passwordToTest = "3Ffp6";
-        Assertions.assertFalse(validator.validateLength(passwordToTest));
+        Assertions.assertFalse(validator.validateLength(passwordToTest, 6));
     }
 
     @Test
@@ -36,9 +36,9 @@ public class PasswordValidatorTest {
     }
 
     @Test
-    void lengthTest(){
+    void validLengthTest(){
         passwordToTest = "aaaaaaaaaaaa";
-        Assertions.assertTrue(validator.validateLength(passwordToTest));
+        Assertions.assertTrue(validator.validateLength(passwordToTest, 6));
     }
 
     @Test
@@ -68,6 +68,42 @@ public class PasswordValidatorTest {
 
     }
 
+    @Test
+    void invalidAdminLength(){
+        passwordToTest = "A*3g56812";
+        Assertions.assertFalse(validator.validateAdminLength(passwordToTest, 10));
+    }
 
+    @Test
+    void ValidAdminLength(){
+        passwordToTest = "A*3g56812GG";
+        Assertions.assertTrue(validator.validateAdminLength(passwordToTest, 10));
+    }
+
+    @Test
+    void noSpecialChars(){
+        passwordToTest = "A3g56812ffhjT";
+        Assertions.assertFalse(validator.validateSpecialChars(passwordToTest));
+    }
+
+    @Test
+    void specialChars(){
+        passwordToTest = "?hga";
+        Assertions.assertTrue(validator.validateSpecialChars(passwordToTest));
+    }
+
+    @Test
+    void invalidAdminPwdTest(){
+        passwordToTest = "A3g4DD56812fhjuT";
+        Assertions.assertFalse(validator.validateAdminPwd(passwordToTest));
+
+    }
+
+    @Test
+    void validAdminPwdTest(){
+        passwordToTest = "A3g4DD568*12fhj*";
+        Assertions.assertTrue(validator.validateAdminPwd(passwordToTest));
+
+    }
 
 }
