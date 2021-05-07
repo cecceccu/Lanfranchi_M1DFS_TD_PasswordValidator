@@ -11,4 +11,8 @@ public class PasswordValidator {
     public boolean validateLetter(String passwordToTest) {
         return passwordToTest.matches(".*[a-zA-Z].*");
     }
+
+    public boolean validatePwd(String passwordToTest) {
+        return validateDigit(passwordToTest) && validateLetter(passwordToTest) && validateLength(passwordToTest);
+    }
 }

@@ -2,17 +2,18 @@ import org.junit.jupiter.api.*;
 
 public class PasswordValidatorTest {
 
-    private static PasswordValidator validator;
+    private PasswordValidator validator;
     private String passwordToTest;
 
-    @BeforeAll
-    static void init(){
+    @BeforeEach
+    void init(){
         validator = new PasswordValidator();
     }
 
     @AfterEach
-    void cleanUpPwdAfterEach(){
+    void cleanUpAfterEach(){
         passwordToTest = null;
+        validator = null;
     }
 
     @Test
