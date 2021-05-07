@@ -42,7 +42,7 @@ public class PasswordValidatorTest {
 
     @Test
     void digitsTest(){
-        passwordToTest = "a1a";
+        passwordToTest = "a11a2";
         Assertions.assertTrue(validator.validateDigit(passwordToTest));
     }
 
@@ -51,6 +51,20 @@ public class PasswordValidatorTest {
     void lettersTest(){
         passwordToTest = "1a1";
         Assertions.assertTrue(validator.validateLetter(passwordToTest));
+    }
+
+    @Test
+    void invalidPwdTest(){
+        passwordToTest = "a1BC33";
+        Assertions.assertFalse(validator.validatePwd(passwordToTest));
+
+    }
+
+    @Test
+    void validPwdTest(){
+        passwordToTest = "a1BC332e";
+        Assertions.assertTrue(validator.validatePwd(passwordToTest));
+
     }
 
 
